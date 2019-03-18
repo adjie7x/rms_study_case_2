@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+    <div th:fragment="copy">
+        &copy; 2011 The Good Thymes Virtual Grocery
+    </div>
+
+    <div th:fragment="copy1">
+        &copy; 2011 copy1
+    </div>
+
+    <div th:fragment="copy2">
+        &copy; 2011 copy2
+    </div>
+
+    <div id="copy3">
+        &copy; 2011 copy2 - Referencing fragments without th:fragment
+    </div>
+
+    <footer th:fragment="copy4">
+        &copy; 2011 The Good Thymes Virtual Grocery - for replace,insert and include
+    </footer>
+
+    <footer th:fragment="frag (onevar,twovar)">
+        <p th:text="${onevar} + ' - ' + ${twovar}">...</p>
+    </footer>
+    <div th:fragment="fragnoargument">
+        ...
+    </div>
+
+    <footer th:fragment="contentfooter(title)" th:assert="${!#strings.isEmpty(title)}">...</footer>
+
+</body>
+</html>
