@@ -11,7 +11,7 @@
 <div layout:fragment="content">
     <span th:text="|Hello ${name}|"/>, did you know that <span th:utext="${formatted}"/> is <span th:text="${formatted}"/> in HTML?
     <br>
-    <span th:if="${resources.size() == 0}">No resources found.</span>
+    <span th:if="${resources.length == 0}">No resources found.</span>
     <br>
     <div class="list-group">
         <a th:each="resource : ${resources}"
