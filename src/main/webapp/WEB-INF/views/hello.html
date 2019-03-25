@@ -2,26 +2,25 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{default.html}">
+      layout:decorate="~{template.html}">
 <head>
     <title>Hello world page</title>
-    <link rel="stylesheet" href="/css/styles.css"/>
 </head>
 <body>
 <div layout:fragment="content">
     <span th:text="|Hello ${name}|"/>, did you know that <span th:utext="${formatted}"/> is <span th:text="${formatted}"/> in HTML?
     <br>
-    <span th:if="${resources.length == 0}">No resources found.</span>
+    <!--<span th:if="${resources.length == 0}">No resources found.</span>
     <br>
     <div class="list-group">
         <a th:each="resource : ${resources}"
            th:href="${resource.url}" class="list-group-item">
             <b th:text="${resource.name}"></b>
         </a>
-    </div>
+    </div>-->
 </div>
 </body>
 <th:block layout:fragment="scripts">
-    <script src="/hello/js"></script>
+    <script th:src="@{/hello/js}"></script>
 </th:block>
 </html>

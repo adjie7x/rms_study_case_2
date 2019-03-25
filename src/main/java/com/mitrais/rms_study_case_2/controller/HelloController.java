@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HelloController {
 
     @GetMapping
-    public String testDefault(Model model){
+    public String hello(Model model){
 
         model.addAttribute("name", "aji");
         model.addAttribute("formatted", "<b>blue</b>");
@@ -23,6 +23,9 @@ public class HelloController {
                         "http://www.w3schools.com")
         };
         model.addAttribute("resources", devResources);
+        // thymeleaf can't resolve -
+//        model.addAttribute("page-title", "head.title.hello");
+        model.addAttribute("pagetitle", "head.title.hello");
 
 
         return "hello.html";

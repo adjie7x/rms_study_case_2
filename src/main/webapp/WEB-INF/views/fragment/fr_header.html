@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="common_header(title,links)">
-    <title th:replace="${title}">The awesome application</title>
+    <title th:text="#{${title}}">The awesome application</title>
     <!--<title>The awesome application</title>-->
 
     <!-- Common styles and scripts -->
     <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/styles.css}">
     <link rel="shortcut icon" th:href="@{/images/favicon.ico}">
     <!--<script type="text/javascript" th:src="@{/sh/scripts/codebase.js}"></script>-->
+
+    <!-- Include Webjars -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/>
+    <!--<link rel="stylesheet" href="/webjars/bootstrap/4.1.3/css/bootstrap-theme.min.css"/>-->
 
     <!--/* Per-page placeholder for additional links */-->
     <th:block th:replace="${links}" />
