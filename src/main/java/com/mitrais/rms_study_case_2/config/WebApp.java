@@ -1,4 +1,4 @@
-package com.mitrais.thymeleaf_layout_demo.config;
+package com.mitrais.rms_study_case_2.config;
 
 import javax.servlet.ServletRegistration.Dynamic;
 

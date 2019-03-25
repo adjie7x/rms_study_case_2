@@ -1,8 +1,8 @@
-package com.mitrais.thymeleaf_layout_demo.config;
+package com.mitrais.rms_study_case_2.config;
 
-import com.mitrais.thymeleaf_layout_demo.formatter.NameFormatter;
-import com.mitrais.thymeleaf_layout_demo.utils.ArrayUtil;
-import com.mitrais.thymeleaf_layout_demo.utils.DateFormatter;
+import com.mitrais.rms_study_case_2.formatter.NameFormatter;
+import com.mitrais.rms_study_case_2.utils.ArrayUtil;
+import com.mitrais.rms_study_case_2.utils.DateFormatter;
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 import nz.net.ultraq.thymeleaf.decorators.strategies.GroupingStrategy;
 import org.springframework.context.ApplicationContext;
@@ -33,7 +33,7 @@ import java.util.Locale;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan({"com.mitrais.thymeleaf_layout_demo"})
+@ComponentScan({"com.mitrais.rms_study_case_2"})
 public class WebMVCConfig implements WebMvcConfigurer, ApplicationContextAware{
 
 

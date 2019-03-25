@@ -1,4 +1,4 @@
-package com.mitrais.thymeleaf_layout_demo.controller;
+package com.mitrais.rms_study_case_2.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

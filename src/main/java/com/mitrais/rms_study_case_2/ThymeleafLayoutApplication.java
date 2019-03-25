@@ -1,4 +1,4 @@
-package com.mitrais.thymeleaf_layout_demo;
+package com.mitrais.rms_study_case_2;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

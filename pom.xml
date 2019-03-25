@@ -9,11 +9,11 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.mitrais</groupId>
-	<artifactId>thymeleaf_layout_demo</artifactId>
+	<artifactId>rms_study_case_2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>thymeleaf_layout_demo</name>
-	<description>thymeleaf layout demo project for Spring Boot</description>
+	<name>rms_study_case_2</name>
+	<description>RMS Study Case 2</description>
 
 <properties>
 		<java.version>1.8</java.version>

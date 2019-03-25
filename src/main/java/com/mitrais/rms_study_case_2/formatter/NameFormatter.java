@@ -1,4 +1,4 @@
-package com.mitrais.thymeleaf_layout_demo.formatter;
+package com.mitrais.rms_study_case_2.formatter;
 
 import java.text.ParseException;
 import java.util.Locale;

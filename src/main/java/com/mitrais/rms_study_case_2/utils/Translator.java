@@ -1,4 +1,4 @@
-package com.mitrais.thymeleaf_layout_demo.utils;
+package com.mitrais.rms_study_case_2.utils;
 
 import org.springframework.stereotype.Component;
 
