@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:fragment="common_head(links,metas,title)">
+    <title th:replace="${title}">RMS 2 | Common</title>
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" th:href="@{/bower_components/bootstrap/dist/css/bootstrap.min.css}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" th:href="@{/bower_components/font-awesome/css/font-awesome.min.css}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" th:href="@{/bower_components/Ionicons/css/ionicons.min.css}">
+    <!-- Theme style -->
+    <link rel="stylesheet" th:href="@{/dist/css/AdminLTE.min.css}">
+    <!-- iCheck -->
+    <link rel="stylesheet" th:href="@{/plugins/iCheck/square/blue.css}">
+
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/login_styles.css}">
+
+
+    <!-- Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <!--/* Per-page placeholder for additional links */-->
+    <th:block th:replace="${links}" />
+    <th:block th:replace="${metas}" />
+</head>
+<body>
+
+</body>
+</html>

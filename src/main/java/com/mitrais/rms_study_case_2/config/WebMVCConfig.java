@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Description;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -63,6 +64,15 @@ public class WebMVCConfig implements WebMvcConfigurer, ApplicationContextAware{
 
         registry.addResourceHandler("/webjars/**")
                 .addResourceLocations("/webjars/");
+
+        registry.addResourceHandler("/bower_components/**")
+                .addResourceLocations("/bower_components/");
+
+        registry.addResourceHandler("/dist/**")
+                .addResourceLocations("/dist/");
+
+        registry.addResourceHandler("/plugins/**")
+                .addResourceLocations("/plugins/");
     }
 
     // 1. CREATE TEMPLATE RESOLVER
@@ -194,6 +204,12 @@ public class WebMVCConfig implements WebMvcConfigurer, ApplicationContextAware{
     public DateFormatter dateFormatter(){
         return new DateFormatter();
     }
+
+//    @Bean
+//    public BCryptPasswordEncoder passwordEncoder() {
+//        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+//        return bCryptPasswordEncoder;
+//    }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {

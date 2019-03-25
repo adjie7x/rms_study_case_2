@@ -24,4 +24,19 @@ public class TestingController {
         return "template.html";
     }
 
+    @GetMapping
+    @RequestMapping("/login")
+    public String testLoginPage(Model model){
+
+        model.addAttribute("username", "aji");
+        model.addAttribute("value1", "value1");
+        model.addAttribute("value2", "value2");
+        model.addAttribute("onevar", "onevar");
+        model.addAttribute("twovar", 42);
+//        model.addAttribute("page-title", "head.title.template");
+        model.addAttribute("pagetitle", "head.title.template");
+
+        return "login.html";
+    }
+
 }
