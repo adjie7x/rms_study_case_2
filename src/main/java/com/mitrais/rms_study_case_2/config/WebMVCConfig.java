@@ -205,11 +205,11 @@ public class WebMVCConfig implements WebMvcConfigurer, ApplicationContextAware{
         return new DateFormatter();
     }
 
-//    @Bean
-//    public BCryptPasswordEncoder passwordEncoder() {
-//        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-//        return bCryptPasswordEncoder;
-//    }
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        return bCryptPasswordEncoder;
+    }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
