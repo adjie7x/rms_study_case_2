@@ -12,6 +12,15 @@
 		<appender-ref ref="FILE" />
 	</logger>
 
+	<logger name="org.springframework.jdbc.core.JdbcTemplate" level="DEBUG" additivity="false">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
+	</logger>
+
+	<logger name="org.springframework.jdbc.core.StatementCreatorUtils" level="TRACE" >
+		<appender-ref ref="STDOUT" />
+	</logger>
+
 	<logger name="com.mitrais.rms_study_case_2" level="DEBUG" additivity="false">
 		<appender-ref ref="STDOUT" />
 		<appender-ref ref="FILE" />
