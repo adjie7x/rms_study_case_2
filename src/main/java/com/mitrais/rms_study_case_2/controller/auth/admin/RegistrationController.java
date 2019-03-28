@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/auth/admin/registration")
+@RequestMapping("/auth/admin/registration_user")
 public class RegistrationController {
 
     @GetMapping
