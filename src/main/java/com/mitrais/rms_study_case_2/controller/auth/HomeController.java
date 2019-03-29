@@ -15,6 +15,7 @@ public class HomeController {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("home.html");
         mv.addObject("pagetitle","head.title.home");
+        mv.addObject("contenttitle","content.title.home");
         return mv;
     }
 

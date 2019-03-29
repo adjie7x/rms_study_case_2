@@ -14,6 +14,7 @@ public class UserManagementController {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("/admin/manage_users.html");
         mv.addObject("pagetitle","head.title.admin.user.management");
+        mv.addObject("contenttitle","content.title.manage_users");
         return mv;
     }
 }

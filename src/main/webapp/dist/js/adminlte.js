@@ -1042,8 +1042,8 @@ throw new Error('AdminLTE requires jQuery')
     $(this.element).addClass(ClassName.tree);
 
 // default open tree add this
-//    $(Selector.treeview + Selector.active, this.element).addClass(ClassName.open);
-    $(Selector.treeview + Selector.active, this.element);
+    $(Selector.treeview + Selector.active, this.element).addClass(ClassName.open);
+//    $(Selector.treeview + Selector.active, this.element);
 
     this._setUpListeners();
   };

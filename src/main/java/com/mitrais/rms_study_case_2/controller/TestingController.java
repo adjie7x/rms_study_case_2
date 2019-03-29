@@ -54,7 +54,7 @@ public class TestingController {
     public @ResponseBody String saveRole(@RequestParam(name = "roleName")String roleName){
 
         Role role = new Role();
-        role.setRoleName(roleName);
+        role.setRoleName("ROLE_"+roleName);
         role = roleService.saveRole(role);
 
         return role.getId();

@@ -14,6 +14,7 @@ public class RegistrationController {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("/admin/registration_user.html");
         mv.addObject("pagetitle","head.title.admin.user.registration");
+        mv.addObject("contenttitle","content.title.registration_user");
         return mv;
     }
 }
