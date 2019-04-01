@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
@@ -32,14 +33,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Autowired
+    private UserDetailsService userDetailsService;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.
-                jdbcAuthentication()
-                .usersByUsernameQuery(usersQuery)
-                .authoritiesByUsernameQuery(rolesQuery)
-                .dataSource(dataSource)
-                .passwordEncoder(bCryptPasswordEncoder);
+//        auth.
+//                jdbcAuthentication()
+//                .usersByUsernameQuery(usersQuery)
+//                .authoritiesByUsernameQuery(rolesQuery)
+//                .dataSource(dataSource)
+//                .passwordEncoder(bCryptPasswordEncoder);
+
+        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
+
     }
 
     @Override
@@ -57,7 +64,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                     .loginPage("/login")
                     .failureUrl("/login?error=true")
-                    .defaultSuccessUrl("/")
+//                    .defaultSuccessUrl("/")
+                    .successForwardUrl("/login")
                     .usernameParameter("email")
                     .passwordParameter("password")
                 .and()

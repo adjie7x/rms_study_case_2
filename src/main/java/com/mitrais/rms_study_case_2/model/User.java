@@ -1,34 +1,38 @@
 package com.mitrais.rms_study_case_2.model;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
     private String id;
 
-    @Column(name = "username", length = 50, nullable = false)
+    @Column(name = "username", length = 50, nullable = false, unique = true)
     private String username;
 
-    @Column(name = "email", length = 50, nullable = false)
+    @Column(name = "email", length = 50, nullable = false, unique = true)
     private String email;
 
-    @Column(name = "password")
+    @Column(name = "fullname", length = 50, nullable = false, unique = true)
+    private String fullname;
+
+    @Column(name = "password", nullable = false)
     private String password;
 
     @Column(name = "active", columnDefinition = "boolean NOT NULL DEFAULT false", insertable = false)
     private boolean active;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_authority", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "authority_id"))
+    private Set<Authority> authorities;
 
     public String getId() {
         return id;
@@ -70,11 +74,40 @@ public class User {
         this.email = email;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
+    @Override
+    public Set<Authority> getAuthorities() {
+        return authorities;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public void setAuthorities(Set<Authority> authorities) {
+        this.authorities = authorities;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

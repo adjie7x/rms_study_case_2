@@ -1,8 +1,10 @@
 package com.mitrais.rms_study_case_2.controller;
 
 
+import com.mitrais.rms_study_case_2.model.Authority;
 import com.mitrais.rms_study_case_2.model.Role;
 import com.mitrais.rms_study_case_2.model.User;
+import com.mitrais.rms_study_case_2.service.AuthorityService;
 import com.mitrais.rms_study_case_2.service.RoleService;
 import com.mitrais.rms_study_case_2.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ public class TestingController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private AuthorityService authorityService;
 
     @GetMapping
     public String testTemplateDefault(Model model){
@@ -62,16 +67,32 @@ public class TestingController {
 
     @PostMapping
     @RequestMapping("/saveUser")
-    public @ResponseBody String saveUser(@RequestParam(name = "email")String email, @RequestParam(name = "pwd")String pwd, @RequestParam(name = "roleId")String roleId){
+    public @ResponseBody String saveUser(@RequestParam(name = "email")String email,
+                                         @RequestParam(name = "pwd")String pwd,
+                                         @RequestParam(name = "fullname")String fullname,
+                                         @RequestParam(name = "roleId")String roleId){
 
         User user = new User();
         user.setUsername(email);
         user.setEmail(email);
+        user.setFullname(fullname);
         user.setPassword(pwd);
 
         userService.saveUser(user,roleId);
 
         return "SUCCESS";
+    }
+
+    @PostMapping
+    @RequestMapping("/saveAuthority")
+    public @ResponseBody String saveAuthority(@RequestParam(name = "authority")String authorityName){
+
+        Authority authority = new Authority();
+        authority.setAuthority("ROLE_"+authorityName);
+
+        authority = authorityService.saveAuthority(authority);
+
+        return authority.getId();
     }
 
 }
