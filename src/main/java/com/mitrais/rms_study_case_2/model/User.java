@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "user")
-public class User implements UserDetails {
+public class User{
 
     @Id
     @GeneratedValue(generator = "system-uuid")
@@ -74,7 +74,6 @@ public class User implements UserDetails {
         this.email = email;
     }
 
-    @Override
     public Set<Authority> getAuthorities() {
         return authorities;
     }
@@ -91,23 +90,4 @@ public class User implements UserDetails {
         this.fullname = fullname;
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
 }

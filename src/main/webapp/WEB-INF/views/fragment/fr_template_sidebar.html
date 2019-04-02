@@ -16,8 +16,7 @@
                     <img th:src="@{/images/prisa.jpg}" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>Alexander Pierce</p>
-                    <span sec:authentication="name">Bob</span>
+                    <p>[[${#session.getAttribute('userFullname').toString()}]]</p>
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>

@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "authority")
-public class Authority implements GrantedAuthority {
+public class Authority{
 
     @Id
     @GeneratedValue(generator = "system-uuid")
@@ -26,7 +26,6 @@ public class Authority implements GrantedAuthority {
         this.id = id;
     }
 
-    @Override
     public String getAuthority() {
         return authority;
     }

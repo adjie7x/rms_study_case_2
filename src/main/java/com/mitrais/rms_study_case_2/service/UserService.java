@@ -3,6 +3,7 @@ package com.mitrais.rms_study_case_2.service;
 import com.mitrais.rms_study_case_2.handler.UserNotActivatedException;
 import com.mitrais.rms_study_case_2.model.Authority;
 import com.mitrais.rms_study_case_2.model.Role;
+import com.mitrais.rms_study_case_2.model.SecuredUserDetail;
 import com.mitrais.rms_study_case_2.model.User;
 import com.mitrais.rms_study_case_2.repository.AuthorityRepository;
 import com.mitrais.rms_study_case_2.repository.RoleRepository;
@@ -90,13 +91,8 @@ public class UserService implements UserDetailsService {
             if (!user.isActive()) {
                 throw new UserNotActivatedException("User " + lowercaseLogin + " was not activated");
             }
-            List<GrantedAuthority> grantedAuthorities = user.getAuthorities().stream()
-                    .map(authority -> new SimpleGrantedAuthority(authority.getAuthority()))
-                    .collect(Collectors.toList());
-//            return new org.springframework.security.core.userdetails.User(lowercaseLogin,
-//                    user.getPassword(),
-//                    grantedAuthorities);
-            return user;
+
+            return new SecuredUserDetail(user);
         }).orElseThrow(() -> new UsernameNotFoundException("User " + lowercaseLogin + " was not found in the " +
                 "database"));
     }

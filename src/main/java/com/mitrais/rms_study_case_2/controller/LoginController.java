@@ -1,5 +1,6 @@
 package com.mitrais.rms_study_case_2.controller;
 
+import com.mitrais.rms_study_case_2.model.SecuredUserDetail;
 import com.mitrais.rms_study_case_2.model.User;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -31,34 +32,19 @@ public class LoginController {
 
         // read principal out of security context and set it to session
         UsernamePasswordAuthenticationToken authentication = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
+        validatePrinciple(authentication.getPrincipal());
+        User loggedInUser = ((SecuredUserDetail) authentication.getPrincipal()).getUserDetails();
 
-        User loggedInUser = ((User) authentication.getPrincipal());
-        validatePrinciple(loggedInUser);
-
-        model.addAttribute("currentUserId", loggedInUser.getId());
-        model.addAttribute("currentUser", loggedInUser.getUsername());
+//        model.addAttribute("currentUserId", loggedInUser.getId());
+//        model.addAttribute("currentUser", loggedInUser.getUsername());
         httpSession.setAttribute("userId", loggedInUser.getId());
+        httpSession.setAttribute("userFullname", loggedInUser.getFullname());
 
         return new ModelAndView("redirect:/",model);
     }
 
-//    @PostMapping
-//    public  String postLogin(Model model, HttpSession httpSession){
-//
-//        // read principal out of security context and set it to session
-//        UsernamePasswordAuthenticationToken authentication = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
-//
-//        User loggedInUser = ((User) authentication.getPrincipal());
-//        validatePrinciple(loggedInUser);
-//
-//        model.addAttribute("currentUserId", loggedInUser.getId());
-//        model.addAttribute("currentUser", loggedInUser.getUsername());
-//        httpSession.setAttribute("userId", loggedInUser.getId());
-//        return "redirect:/";
-//    }
-
     private void validatePrinciple(Object principal) {
-        if (principal == null) {
+        if (!(principal instanceof SecuredUserDetail)) {
             throw new  IllegalArgumentException("Principal can not be null!");
         }
     }

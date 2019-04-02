@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
 
@@ -16,7 +17,7 @@ import java.security.Principal;
 public class HomeController {
 
     @GetMapping
-    public ModelAndView goToHome(Principal principal, HttpSession httpSession){
+    public ModelAndView goToHome(HttpServletRequest request, Principal principal, HttpSession httpSession){
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
