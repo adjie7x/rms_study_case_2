@@ -35,18 +35,18 @@
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MAIN NAVIGATION</li>
-                <li><a th:href="@{/}"><i class="fa fa-home"></i> <span>Home</span></a></li>
+                <li th:class="${home_active}"><a th:href="@{/}"><i class="fa fa-home"></i> <span>Home</span></a></li>
 
-                <li class="treeview">
+                <li th:if="${#session.getAttribute('userRole').toString()} == 'ROLE_ADMIN'" th:class="|treeview ${parent_user_mgmt_active} ${user_mgmt_menu_open}|">
                     <a href="#">
                         <i class="fa fa-users"></i> <span>User Management</span>
                         <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                     </a>
-                    <ul class="treeview-menu" style="display: none;">
-                        <li><a th:href="@{/auth/admin/registration_user}"><i class="fa fa-circle-o"></i>User Registration</a></li>
-                        <li class=""><a th:href="@{/auth/admin/manage_users}"><i class="fa fa-circle-o"></i>Manage Users</a></li>
+                    <ul class="treeview-menu" style="">
+                        <li th:class="${reg_user_active}"><a th:href="@{/auth/admin/registration_user}"><i class="fa fa-circle-o"></i>User Registration</a></li>
+                        <li th:class="${user_mgmt_active}"><a th:href="@{/auth/admin/manage_users}"><i class="fa fa-circle-o"></i>Manage Users</a></li>
                     </ul>
                 </li>
 

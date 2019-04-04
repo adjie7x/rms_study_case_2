@@ -25,6 +25,10 @@ public class RegistrationController {
 
     private String contentTitle = "content.title.registration_user";
 
+    private final String menuOpenCss = "menu-open";
+
+    private final String activeCss = "active";
+
     @Autowired
     private AuthorityService authorityService;
 
@@ -49,15 +53,28 @@ public class RegistrationController {
         return contentTitle;
     }
 
+    @ModelAttribute("user_mgmt_menu_open")
+    public String getMenuOpenCss(){
+
+        return menuOpenCss;
+    }
+
+    @ModelAttribute("reg_user_active")
+    public String getActiveCss(){
+
+        return activeCss;
+    }
+
+    @ModelAttribute("parent_user_mgmt_active")
+    public String getParentActiveCss(){
+
+        return activeCss;
+    }
+
     @GetMapping
     public ModelAndView registrationPage(){
         ModelAndView mv = new ModelAndView();
         mv.setViewName("/admin/registration_user.html");
-//        mv.addObject("pagetitle","head.title.admin.user.registration");
-//        mv.addObject("contenttitle","content.title.registration_user");
-
-//        List<Authority> roles = authorityService.getAll();
-//        mv.addObject("roles",roles);
         mv.addObject("userForm", new UserForm());
 
         return mv;
@@ -76,8 +93,6 @@ public class RegistrationController {
 
         if (bindingResult.hasErrors()) {
             mv.setViewName("/admin/registration_user.html");
-            mv.addObject("pagetitle","head.title.admin.user.registration");
-            mv.addObject("contenttitle","content.title.registration_user");
         }
 
 

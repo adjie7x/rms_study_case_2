@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @SessionAttributes({"currentUser", "currentUserId"})
@@ -38,9 +41,19 @@ public class LoginController {
 //        model.addAttribute("currentUserId", loggedInUser.getId());
 //        model.addAttribute("currentUser", loggedInUser.getUsername());
         httpSession.setAttribute("userId", loggedInUser.getId());
+        List<String> roles = loggedInUser.getAuthorities().stream().map(authority -> new String(authority.getAuthority())).collect(Collectors.toList());
+        httpSession.setAttribute("userRole", roles.get(0));
         httpSession.setAttribute("userFullname", loggedInUser.getFullname());
 
         return new ModelAndView("redirect:/",model);
+    }
+
+    @GetMapping
+    @RequestMapping(value = "/logout")
+    public String logout(SessionStatus session) {
+        SecurityContextHolder.getContext().setAuthentication(null);
+        session.setComplete();
+        return "redirect:/";
     }
 
     private void validatePrinciple(Object principal) {

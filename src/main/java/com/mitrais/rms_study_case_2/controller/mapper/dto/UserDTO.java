@@ -1,23 +1,23 @@
-package com.mitrais.rms_study_case_2.controller.form;
+package com.mitrais.rms_study_case_2.controller.mapper.dto;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
-public class UserForm {
+public class UserDTO {
 
     private String id;
-
-    @NotEmpty(message = "*Please provide your Full name")
     private String fullname;
-
-    @NotEmpty(message = "*Please provide an email")
     private String email;
-
-    @NotEmpty(message = "*Please select 1 role")
     private String selectedRole;
-
-    @NotEmpty(message = "*Please provide your password")
     private String password;
+    private boolean active;
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
     public String getId() {
         return id;
@@ -58,4 +58,5 @@ public class UserForm {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }

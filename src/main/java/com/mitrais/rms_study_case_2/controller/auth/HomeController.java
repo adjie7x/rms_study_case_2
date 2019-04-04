@@ -5,6 +5,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -16,6 +17,38 @@ import java.security.Principal;
 @RequestMapping("/")
 public class HomeController {
 
+    private String pageTitle = "head.title.home";
+
+    private String contentTitle = "content.title.home";
+
+    private String menuOpenCss = "menu-open";
+
+    private String activeCss = "active";
+
+    @ModelAttribute("pagetitle")
+    public String getPageTitle(){
+
+        return pageTitle;
+    }
+
+    @ModelAttribute("contenttitle")
+    public String getContentTitle(){
+
+        return contentTitle;
+    }
+
+    @ModelAttribute("home_menu_open")
+    public String getMenuOpenCss(){
+
+        return menuOpenCss;
+    }
+
+    @ModelAttribute("home_active")
+    public String getActiveCss(){
+
+        return activeCss;
+    }
+
     @GetMapping
     public ModelAndView goToHome(HttpServletRequest request, Principal principal, HttpSession httpSession){
 
@@ -23,8 +56,6 @@ public class HomeController {
 
         ModelAndView mv = new ModelAndView();
         mv.setViewName("home.html");
-        mv.addObject("pagetitle","head.title.home");
-        mv.addObject("contenttitle","content.title.home");
         return mv;
     }
 
