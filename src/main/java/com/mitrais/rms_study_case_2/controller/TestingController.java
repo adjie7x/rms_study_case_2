@@ -95,4 +95,11 @@ public class TestingController {
         return authority.getId();
     }
 
+
+    @GetMapping
+    @RequestMapping(value = "/500Error")
+    public void throwRuntimeException() {
+        throw new NullPointerException("Throwing a null pointer exception");
+    }
+
 }
