@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -30,7 +31,7 @@ public class User{
     @Column(name = "active", columnDefinition = "boolean NOT NULL DEFAULT false", insertable = false)
     private boolean active;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinTable(name = "user_authority", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "authority_id"))
     private Set<Authority> authorities;
 
@@ -88,6 +89,20 @@ public class User{
 
     public void setFullname(String fullname) {
         this.fullname = fullname;
+    }
+
+    public void addAuthority(Authority authority){
+        if (authorities == null){
+            authorities = new HashSet<>();
+        }
+
+        authorities.add(authority);
+    }
+
+    public void removeAuthority(Authority authority){
+        if(authorities != null){
+            authorities.remove(authority);
+        }
     }
 
 }

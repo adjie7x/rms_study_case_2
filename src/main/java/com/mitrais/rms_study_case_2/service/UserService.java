@@ -8,6 +8,8 @@ import com.mitrais.rms_study_case_2.model.User;
 import com.mitrais.rms_study_case_2.repository.AuthorityRepository;
 import com.mitrais.rms_study_case_2.repository.RoleRepository;
 import com.mitrais.rms_study_case_2.repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AccountStatusUserDetailsChecker;
 import org.springframework.security.core.GrantedAuthority;
@@ -24,6 +26,8 @@ import java.util.stream.Collectors;
 
 @Service("userDetailsService")
 public class UserService implements UserDetailsService {
+
+    Logger log = LoggerFactory.getLogger(UserService.class);
 
     private UserRepository userRepository;
     private RoleRepository roleRepository;
@@ -97,12 +101,21 @@ public class UserService implements UserDetailsService {
 
         String lowercaseLogin = login.toLowerCase(Locale.ENGLISH);
         Optional<User> userFromDatabase = userRepository.findByEmailOrUsername(login,login);
+
         return userFromDatabase.map(user -> {
             if (!user.isActive()) {
                 throw new UserNotActivatedException("User " + lowercaseLogin + " was not activated");
             }
 
-            return new SecuredUserDetail(user);
+//            user.getAuthorities();
+            Set<Authority> authorities = user.getAuthorities();
+
+            authorities.size();
+
+//            user.getAuthorities().forEach(e -> log.info(e.getAuthority()));
+
+
+            return new SecuredUserDetail(user,authorities);
         }).orElseThrow(() -> new UsernameNotFoundException("User " + lowercaseLogin + " was not found in the " +
                 "database"));
     }

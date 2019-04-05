@@ -5,19 +5,31 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class SecuredUserDetail implements UserDetails {
 
     private User user;
 
-    public SecuredUserDetail(User user){
+    private Set<Authority> authorities = new HashSet<>();
+
+    public SecuredUserDetail(User user, Set<Authority> authorities){
         this.user = user;
+        this.authorities = authorities;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return user.getAuthorities().stream().map(authority -> new SimpleGrantedAuthority(authority.getAuthority())).collect(Collectors.toList());
+
+//        Set<Authority> authorities = user.getAuthorities();
+
+        return this.authorities
+                .stream()
+                .map(authority ->
+                        new SimpleGrantedAuthority(authority.getAuthority()))
+                .collect(Collectors.toList());
     }
 
     public String getId() {
