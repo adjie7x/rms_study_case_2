@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class ExceptionController {
 
-    private String pageTitle = "error.page.title";
+    private String pageTitle = "error.500.page.title";
 
-    private String contentTitle = "error.content.title";
+    private String contentTitle = "error.500.content.title";
 
     @ExceptionHandler(Exception.class)
     public ModelAndView handleError(HttpServletRequest request, Exception e)   {
